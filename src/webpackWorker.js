@@ -24,7 +24,12 @@ function getAppName(webpackConfig) {
 }
 
 function getOutputOptions(webpackConfig, options) {
-    var outputOptions = Object.create(webpackConfig.stats || {});
+    var outputOptions = {};
+
+    Object.keys(webpackConfig.stats).forEach(function(key) {
+      outputOptions[key] = webpackConfig.stats[key];
+    });
+
     if(typeof options.modulesSort !== 'undefined') {
         outputOptions.modulesSort = options.modulesSort;
     }
