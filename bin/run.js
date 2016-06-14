@@ -55,7 +55,9 @@ if(argv.version) {
                 }), null, 2) + "\n");
             }
         }).catch(function(err) {
-            console.log(err.message);
+            if (err && err.message) {
+                console.log(err.message);
+            }
             process.exit(1);
         });
     } catch (e) {

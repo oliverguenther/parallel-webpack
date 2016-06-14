@@ -88,12 +88,9 @@ module.exports = function(configuratorFileName, options, index, expectedConfigLe
                 }
                 if(stats.compilation.errors && stats.compilation.errors.length) {
                     var message = chalk.red('[WEBPACK]') + ' Errors building ' + chalk.yellow(getAppName(webpackConfig)) + "\n"
-                        + stats.compilation.errors.map(function(error) {
-                            return error.message;
-                        }).join("\n");
-                    if(watch) {
-                        console.log(message);
-                    } else {
+                        + stats.toString(outputOptions);
+                    console.log(message);
+                    if(!watch) {
                         return done({
                             message: message,
                             stats: JSON.stringify(stats.toJson(outputOptions), null, 2)

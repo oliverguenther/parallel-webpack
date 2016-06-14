@@ -95,7 +95,8 @@ function run(configPath, options, callback) {
         if(notSilent(options)) {
             console.log('%s Build failed after %s seconds', chalk.red('[WEBPACK]'), chalk.blue((Date.now() - startTime) / 1000));
         }
-        return Promise.reject(err);
+
+        return Promise.reject();
     }).then(function (results) {
         if(notSilent(options)) {
             console.log('%s Finished build after %s seconds', chalk.blue('[WEBPACK]'), chalk.blue((Date.now() - startTime) / 1000));
